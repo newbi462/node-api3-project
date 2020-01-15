@@ -145,6 +145,12 @@ if the request body is missing the required text field, cancel the request and r
 */
 function validatePost(req, res, next) {
   // do your magic!
+  if (typeof req.body == "object") {
+    // if for the "required text field" else to go to next
+    next();
+  } else {
+    res.status(400).json({ message: "missing post data" });
+
 }
 
 module.exports = router;
