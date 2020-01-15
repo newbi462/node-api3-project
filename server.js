@@ -19,16 +19,21 @@ function logger(request, responce, next) {
   next();
 }
 
+//MOVE TO THE ROUTES FILE THAT HANDLES IDs
+//validateUserId()
+function validateUserId(request, responce, next) {
+//*validateUserId validates the user id on every request that expects a user id parameter
+//*if the id parameter is valid, store that user object as req.user
+  if ("id parameter" != undefined) {
+    request.user = "that user object";
+  }
 
+//*if the id parameter does not match any user id in the database, cancel the request and respond with status 400 and { message: "invalid user id" } validateUser()
+
+  next();
+}
 
 /*
-validateUserId()
-
-validateUserId validates the user id on every request that expects a user id parameter
-if the id parameter is valid, store that user object as req.user
-if the id parameter does not match any user id in the database, cancel the request and respond with status 400 and { message: "invalid user id" }
-validateUser()
-
 validateUser validates the body on a request to create a new user
 if the request body is missing, cancel the request and respond with status 400 and { message: "missing user data" }
 if the request body is missing the required name field, cancel the request and respond with status 400 and { message: "missing required name field" }
