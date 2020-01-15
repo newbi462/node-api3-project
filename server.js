@@ -1,5 +1,6 @@
 //Dependancies
 const express = require("express");
+
 // Import Data
 
 
@@ -51,11 +52,15 @@ server.use(express.json());
 server.use(logger);
 
 //ROUTES
+const userRouter = require('./users/userRouter.js');
+
+//ENDPOINTS
 server.get('/', logger, (req, res) => {
   res.send(`<h2>Let's write some middleware! And I hate this HTML responce</h2>`);
 });
 
-//ENDPOINTS
+server.use('/api/users', userRouter);
+
 
 
 module.exports = server;
