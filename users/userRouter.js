@@ -4,7 +4,7 @@ const UserProjectData = require("./userDb.js");
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', validateUser, (req, res) => {
   // do your magic!
   const resourceObject = req.body;
   //console.log(resourceObject);
@@ -130,8 +130,13 @@ if the request body is missing the required name field, cancel the request and r
 validatePost()
 */
 function validateUser(req, res, next) {
-  // do your magic!
-}
+  // do your magic
+  if (typeof req.body == "object" && typeof req.body.name == "string") {
+    next();
+  } else {
+    res.status(400).json({ message: "missing required name field" });
+  }
+};
 
 /*
 validatePost validates the body on a request to create a new post
